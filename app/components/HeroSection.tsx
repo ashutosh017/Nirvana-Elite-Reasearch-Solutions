@@ -34,7 +34,7 @@ const HeroSection = () => {
             layout="fill"
             objectFit="cover"
             className={`transition-opacity duration-1000 ease-in ${
-              index === currentIndex ? "opacity-50" : "opacity-0"
+              index === currentIndex ? "opacity-20" : "opacity-0"
             }`}
           />
         ))}
