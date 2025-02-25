@@ -1,5 +1,5 @@
 'use client'
-
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,13 +19,13 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change every 5 seconds
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="bg-black text-white py-20 flex items-center justify-center relative overflow-hidden h-screen">
-      <div className="absolute inset-0 ">
+      <div className="absolute inset-0">
         {images.map((image, index) => (
           <Image
             key={index}
@@ -50,21 +50,42 @@ const HeroSection = () => {
         ></div>
       </div>
 
-      <div className="container mx-auto px-4 text-center  relative z-10">
-        <h1 className="text-3xl md:text-6xl font-bold mb-4 ">
+      <motion.div
+        className="container mx-auto px-4 text-center relative z-10"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.h1
+          className="text-3xl md:text-6xl font-bold mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           Expert Assistance for PhD Students
-        </h1>
-        <p className="text-sm md:text-xl mb-8  px-6">
+        </motion.h1>
+        <motion.p
+          className="text-sm md:text-xl mb-8 px-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
           We help you excel in your doctoral journey with our specialized
           services
-        </p>
-        <Button
-          asChild
-          className="bg-secondary text-sm md:text-lg px-2 py-1 md:px-4 md:py-5  hover:bg-secondary/90 text-black"
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <Link href="#contact">Get Started</Link>
-        </Button>
-      </div>
+          <Button
+            asChild
+            className="bg-secondary text-sm md:text-lg px-2 py-1 md:px-4 md:py-5 hover:bg-secondary/90 text-black"
+          >
+            <Link href="#contact">Get Started</Link>
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
