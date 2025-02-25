@@ -1,5 +1,5 @@
 "use client";
-import { RefObject, useRef, useState } from "react";
+import {  FormEvent, useRef } from "react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
@@ -8,13 +8,13 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 
-interface FormDataSchema {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  service: string;
-}
+// interface FormDataSchema {
+//   name: string;
+//   email: string;
+//   phone: string;
+//   message: string;
+//   service: string;
+// }
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -25,7 +25,7 @@ const ContactUs = () => {
   const serviceRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     console.log("handleSubmit called");
     e.preventDefault();
     try {
@@ -109,11 +109,11 @@ const ContactUs = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-semibold mb-4 text-primary">
-              Let's Connect!
+              Let&apos;s Connect!
             </h3>
             <p className="text-gray-600">
               We’re here to help you with any questions or inquiries. Whether
-              it's about our services or just to say hello – we’d love to hear
+              it&apos;s about our services or just to say hello – we’d love to hear
               from you!
             </p>
             <p className="mt-4 text-gray-600">

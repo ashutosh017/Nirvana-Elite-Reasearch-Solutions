@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import z from "zod";
 import { prisma } from "../../../../db/src/index";
 
@@ -9,7 +9,7 @@ const formSchema = z.object({
   message: z.string().max(1000),
   service: z.string().max(100),
 });
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const data = await req.json();
   const parsedData = formSchema.safeParse(data);
   console.log("data: ", data);

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -22,7 +23,9 @@
     "react-toastify": "^11.0.4",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "prisma": "^6.4.1"
+
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
