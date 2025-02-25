@@ -50,10 +50,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              At Nirvaan Elite Research Solutions, we understand the challenges that doctoral
-              students face. Our team of experienced academics and
-              researchers is dedicated to providing high-quality assistance
-              to help you succeed in your PhD journey.
+              At Nirvaan Elite Research Solutions, we understand the challenges
+              that doctoral students face. Our team of experienced academics and
+              researchers is dedicated to providing high-quality assistance to
+              help you succeed in your PhD journey.
             </motion.p>
             <motion.p
               className="text-gray-600 mb-4"
@@ -62,9 +62,9 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              With our tailored services, we aim to support you in every
-              aspect of your research, from crafting your initial synopsis
-              to completing your final thesis.
+              With our tailored services, we aim to support you in every aspect
+              of your research, from crafting your initial synopsis to
+              completing your final thesis.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -74,7 +74,7 @@ const About = () => {
             >
               <Button
                 variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
+                className="border-primary text-primary transition-all duration-300 delay-150 hover:bg-primary hover:text-white"
               >
                 Learn More
               </Button>

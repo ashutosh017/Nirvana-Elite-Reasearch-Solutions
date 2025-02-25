@@ -48,7 +48,16 @@ const Testimonials = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            // transition={{ duration: 0.4, delay: index * 0.2 }}
+            whileHover={{ 
+                scale: 1.05, 
+                transition: { 
+                  duration: 0.2,   // Snappy hover-in effect
+                  ease: "easeOut" 
+                } 
+              }}
+              whileTap={{ scale: 0.98 }}
+            
           >
             <Quote className="h-10 w-10 text-indigo-600 mb-4" />
             <p className="text-gray-700 mb-4 italic">&quot;{testimonial.feedback}&quot;</p>

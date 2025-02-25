@@ -57,11 +57,19 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white cursor-pointer p-6 rounded-2xl shadow-md text-left transition-all duration-300 hover:shadow-lg"
+              className="bg-white cursor-pointer p-6 rounded-2xl shadow-md text-left transition-transform duration-150 hover:shadow-xl"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              // transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ 
+                scale: 1.05, 
+                transition: { 
+                  duration: 0.2,   // Snappy hover-in effect
+                  ease: "easeOut" 
+                } 
+              }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">

@@ -73,7 +73,15 @@ const Services = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              // transition={{ duration: 0.6, delay: index * 0.2 }}
+              whileHover={{ 
+                scale: 1.06, 
+                transition: { 
+                  duration: 0.2,   // Snappy hover-in effect
+                  ease: "easeOut" 
+                } 
+              }}
+              whileTap={{ scale: 0.98 }}
             >
               <ServiceCard
                 icon={service.icon}
