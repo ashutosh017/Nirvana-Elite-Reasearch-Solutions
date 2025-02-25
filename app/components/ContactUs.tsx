@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 //   service: string;
 // }
 
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://phd-assist-v0-dev.vercel.app/";
 
 const ContactUs = () => {
   const nameRef = useRef<HTMLInputElement>(null);
