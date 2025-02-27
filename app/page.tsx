@@ -1,11 +1,11 @@
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
-import HeroSection from "@/app/components/HeroSection";
-import WhyChooseUs from "@/app/components/WhyChooseUs";
-import Services from "@/app/components/Services";
-import About from "@/app/components/About";
-import ContactUs from "@/app/components/ContactUs";
-import Testimonials from "./components/Testimonials";
+import Header from "@/app/_components/Header";
+import Footer from "@/app/_components/Footer";
+import HeroSection from "@/app/_components/HeroSection";
+import WhyChooseUs from "@/app/_components/WhyChooseUs";
+import Services from "@/app/_components/Services";
+import About from "@/app/_components/About";
+import ContactUs from "@/app/_components/ContactUs";
+import Testimonials from "./_components/Testimonials";
 
 export default function Home() {
   return (
