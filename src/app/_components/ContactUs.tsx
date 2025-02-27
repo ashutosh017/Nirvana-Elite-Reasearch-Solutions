@@ -1,12 +1,13 @@
 "use client";
 import {  FormEvent, useRef } from "react";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
-import { Textarea } from "../../components/ui/textarea";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Textarea } from "../../../components/ui/textarea";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { BACKEND_URL } from "../_config";
 
 // interface FormDataSchema {
 //   name: string;
@@ -16,7 +17,6 @@ import { motion } from "framer-motion";
 //   service: string;
 // }
 
-const BACKEND_URL = "https://phd-assist-v0-dev.vercel.app/";
 
 const ContactUs = () => {
   const nameRef = useRef<HTMLInputElement>(null);

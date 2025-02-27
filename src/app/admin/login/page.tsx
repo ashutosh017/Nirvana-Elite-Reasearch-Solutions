@@ -24,7 +24,7 @@ export default function AdminLogin() {
     const password = formData.get("password")
 
     try {
-      const res = await fetch("/api/admin/login", {
+      const res = await fetch("/api/v1/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -37,6 +37,7 @@ export default function AdminLogin() {
       router.push("/admin")
       router.refresh()
     } catch (err) {
+      console.log(err)
       setError("Invalid email or password")
     } finally {
       setLoading(false)

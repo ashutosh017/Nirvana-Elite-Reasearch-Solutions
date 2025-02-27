@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import z from "zod";
-import { prisma } from "../../../../db/src/index";
+import { prisma } from "../../../../../db/src/index";
 
 const formSchema = z.object({
   name: z.string().max(100),
