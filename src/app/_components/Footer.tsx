@@ -9,7 +9,7 @@ export default function Footer(){
           <Link href="/" className="flex items-center space-x-2 justify-center md:justify-start">
             <GraduationCap className="h-8 w-8 text-secondary" />
             <div>
-              <span className="text-xl font-bold block">Nirvaana Elite</span>
+              <span className="text-xl font-bold block">Nirvana Elite</span>
               <span className="text-sm text-gray-400">Research Solutions</span>
             </div>
           </Link>
@@ -24,7 +24,7 @@ export default function Footer(){
         </div>
       </div>
       <div className="mt-8 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} Nirvaana Elite Research Solutions. All rights reserved.
+        © {new Date().getFullYear()} Nirvana Elite Research Solutions. All rights reserved.
       </div>
     </div>
     </footer>

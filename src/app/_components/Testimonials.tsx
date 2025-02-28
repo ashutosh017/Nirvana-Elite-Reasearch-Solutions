@@ -9,7 +9,7 @@ const testimonials = [
     name: "Dr. Aisha Verma",
     role: "PhD in Computer Science",
     feedback:
-      "Nirvaana Elite Research Solutions played a crucial role in refining my research proposal. Their expert guidance helped me get instant approval, and their support throughout my thesis writing was invaluable!",
+      "Nirvana Elite Research Solutions played a crucial role in refining my research proposal. Their expert guidance helped me get instant approval, and their support throughout my thesis writing was invaluable!",
     image: "/images/testimonial1.png",
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     name: "Prof. Swati Sharma",
     role: "Published Researcher, IEEE & Elsevier",
     feedback:
-      "I struggled with journal rejections until I found Nirvaana Elite. Their expert research editing and journal publication services helped me publish in IEEE within weeks!",
+      "I struggled with journal rejections until I found Nirvana Elite. Their expert research editing and journal publication services helped me publish in IEEE within weeks!",
     image: "/images/testimonial3.png",
   },
 ];

@@ -50,7 +50,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              At Nirvaana Elite Research Solutions, we understand the challenges
+              At Nirvana Elite Research Solutions, we understand the challenges
               that doctoral students face. Our team of experienced academics and
               researchers is dedicated to providing high-quality assistance to
               help you succeed in your PhD journey.
