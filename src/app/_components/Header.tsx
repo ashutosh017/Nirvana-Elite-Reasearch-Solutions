@@ -1,23 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { GraduationCap, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Scroll effect to show/hide navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 5) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="bg-white shadow-sm relative z-50">
+    <header
+      className={`bg-white shadow-sm fixed top-0 w-full z-50 drop-shadow-lg transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-start space-y-0 leading-tight">
           <GraduationCap className="h-12 w-12 text-primary" />
           <div className="flex flex-col ml-2">
             <span className="text-2xl font-bold text-primary">
-              Nirvaan Elite
+              Nirvaana Elite
             </span>
             <span className="text-md text-gray-800">Research Solutions</span>
           </div>
@@ -34,7 +54,14 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-4">
-            {["Services", "About", "Contact"].map((item) => (
+            {[
+              "Home",
+              "Services",
+              "About",
+              "Why Choose Us",
+              "Testimonials",
+              "Contact",
+            ].map((item) => (
               <li key={item}>
                 <Link
                   href={`#${item.toLowerCase()}`}
@@ -59,7 +86,14 @@ const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <ul className="flex flex-col space-y-2 py-4">
-                {["Services", "About", "Contact"].map((item, index) => (
+                {[
+                  "Home",
+                  "Services",
+                  "About",
+                  "Why Choose Us",
+                  "Testimonials",
+                  "Contact",
+                ].map((item, index) => (
                   <motion.li
                     key={item}
                     initial={{ opacity: 0, y: 10 }}

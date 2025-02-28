@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Trash2 } from "lucide-react";
-import CustomButton from "../_components/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../_config";
@@ -56,18 +55,18 @@ export default function AdminDashboard() {
       console.log(error);
     }
   };
-  const deleteAllUsers = async () => {
-    try {
-      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
-        data: {
-          userId: "",
-          msg: "DELETE_ALL",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const deleteAllUsers = async () => {
+  //   try {
+  //     await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+  //       data: {
+  //         userId: "",
+  //         msg: "DELETE_ALL",
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
@@ -78,9 +77,9 @@ export default function AdminDashboard() {
             <CardTitle className="text-sm font-medium">
               Total Inquiries
             </CardTitle>
-            <CustomButton fun={deleteAllUsers} variant="destructive">
+            {/* <CustomButton fun={deleteAllUsers} variant="destructive">
               Delete All Users
-            </CustomButton>
+            </CustomButton> */}
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockUsers.length}</div>

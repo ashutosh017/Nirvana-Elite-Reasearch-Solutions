@@ -10,7 +10,7 @@ import WhatsappChat from "./_components/WhatsappChat";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col scroll-smooth min-h-screen">
       <Header />
       <main className="flex-grow">
         <HeroSection />

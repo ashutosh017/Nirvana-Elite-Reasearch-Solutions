@@ -32,7 +32,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-choose-us" className="py-20 bg-white">
+    <section id="why choose us" className="scroll-smooth py-20 bg-white">
       <div className="container mx-auto px-4 text-center">
         <motion.h2
           className="text-3xl font-bold text-gray-800 mb-8"

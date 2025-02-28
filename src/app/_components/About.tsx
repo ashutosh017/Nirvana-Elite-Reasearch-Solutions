@@ -50,7 +50,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              At Nirvaan Elite Research Solutions, we understand the challenges
+              At Nirvaana Elite Research Solutions, we understand the challenges
               that doctoral students face. Our team of experienced academics and
               researchers is dedicated to providing high-quality assistance to
               help you succeed in your PhD journey.
@@ -74,9 +74,10 @@ const About = () => {
             >
               <Button
                 variant="outline"
-                className="border-primary text-primary transition-all duration-300 delay-150 hover:bg-primary hover:text-white"
+                className="relative overflow-hidden border-primary text-primary transition-all duration-300 hover:text-white group"
               >
-                Learn More
+                <span className="relative z-10">Learn More</span>
+                <span className="absolute inset-0 bg-primary transition-transform duration-500 transform translate-y-full group-hover:translate-y-0"></span>
               </Button>
             </motion.div>
           </motion.div>
