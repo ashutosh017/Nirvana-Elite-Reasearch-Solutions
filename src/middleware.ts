@@ -14,12 +14,12 @@ export async function middleware(req: NextRequest) {
     }
     console.log("token recieved in middleware: ", token);
 
-    const verify = verifyToken(token);
+    const verify =  verifyToken(token);
     if (!verify) {
       console.log("not verified");
       return NextResponse.redirect(new URL("/admin/login", req.url));
     }
-    console.log("Verify: ", verify);
+    // console.log("Verify: ", verify);
   } catch (error) {
     return new Response(
       JSON.stringify({

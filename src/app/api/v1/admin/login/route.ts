@@ -9,7 +9,6 @@ const loginSchema = z.object({
 });
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  // const {adminId, password} = body
   const parsedData = loginSchema.safeParse(body);
   if (!parsedData.success) {
     return new Response("error parsing  body", {
@@ -30,13 +29,9 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const token = jwt.sign(adminEmail, jwtSecret);
+  const token = jwt.sign({email:adminEmail}, jwtSecret);
   const response = NextResponse.redirect(new URL("/admin", req.url));
-  response.cookies.set("token", token, {
-    httpOnly: true, // Secure cookie to prevent XSS
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-  });
+  response.cookies.set("token", token);
 
   return response;
 }

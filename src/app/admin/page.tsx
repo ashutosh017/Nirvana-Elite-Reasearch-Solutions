@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -7,24 +8,66 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { prisma } from "@/db/src";
+import { Trash2 } from "lucide-react";
+import CustomButton from "../_components/Button";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "../_config";
 
-let mockUsers: {
+interface mockUsersType {
   name: string;
   id: string;
   email: string;
   phone: string;
   service: string;
   message: string;
-}[];
+}
 
-export default async function AdminDashboard() {
-  try {
-    const users = await prisma.user.findMany();
-    mockUsers = users;
-  } catch (error) {
-    console.log(error)
-  }
+export default function AdminDashboard() {
+  const [mockUsers, setMockUsers] = useState<Array<mockUsersType>>([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(`${BACKEND_URL}/api/v1/users`);
+        const users = res.data.users;
+        console.log(users)
+        // Check if the response is an array before setting state
+        if (Array.isArray(users)) {
+          setMockUsers(users);
+        } else {
+          console.log("API response is not an array:", users);
+          setMockUsers([]); // Fallback to an empty array
+        }
+      } catch (error) {
+        console.log("Error fetching users:", error);
+      }
+    })();
+  }, []);
+
+  const deleteUser = async (userId: string) => {
+    try {
+      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+        data: {
+          userId,
+          msg: "",
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteAllUsers = async () => {
+    try {
+      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+        data: {
+          userId: "",
+          msg: "DELETE_ALL",
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
@@ -35,6 +78,9 @@ export default async function AdminDashboard() {
             <CardTitle className="text-sm font-medium">
               Total Inquiries
             </CardTitle>
+            <CustomButton fun={deleteAllUsers} variant="destructive">
+              Delete All Users
+            </CustomButton>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockUsers.length}</div>
@@ -54,17 +100,27 @@ export default async function AdminDashboard() {
                 <TableHead>Email</TableHead>
                 <TableHead>Phone</TableHead>
                 <TableHead>Subject</TableHead>
-                <TableHead>Date</TableHead>
+                <TableHead>message</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockUsers.map((user) => (
-                <TableRow key={user.id}>
+              {mockUsers.map((user: mockUsersType, index: number) => (
+                <TableRow key={index}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.phone}</TableCell>
                   <TableCell>{user.service}</TableCell>
                   <TableCell>{user.message}</TableCell>
+                  <TableCell className="">
+                    <Trash2
+                      onClick={() => {
+                        deleteUser(user.id);
+                      }}
+                      size={16}
+                      className=" cursor-pointer hover:text-red-700"
+                    />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
