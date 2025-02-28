@@ -1,5 +1,5 @@
 "use client";
-import {  FormEvent, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
@@ -16,7 +16,6 @@ import { BACKEND_URL } from "../_config";
 //   message: string;
 //   service: string;
 // }
-
 
 const ContactUs = () => {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -43,12 +42,23 @@ const ContactUs = () => {
         });
         return;
       }
+      let name, phone, email, service, message;
+      name = nameRef.current.value;
+      phone = phoneRef.current.value;
+      email = emailRef.current?.value;
+      service = serviceRef.current?.value;
+      message = messageRef.current?.value;
+      if (nameRef.current) nameRef.current.value = "";
+      if (phoneRef.current) phoneRef.current.value = "";
+      if (emailRef.current) emailRef.current.value = "";
+      if (serviceRef.current) serviceRef.current.value = "";
+      if (messageRef.current) messageRef.current.value = "";
       const res = await axios.post(`${BACKEND_URL}/api/v1/contacts`, {
-        name: nameRef.current?.value,
-        email: emailRef.current?.value,
-        phone: phoneRef.current?.value,
-        service: serviceRef.current?.value,
-        message: messageRef.current?.value,
+        name,
+        email,
+        phone,
+        service,
+        message,
       });
 
       console.log("res data: ", res.data);
@@ -63,11 +73,6 @@ const ContactUs = () => {
         theme: "light",
         transition: Bounce,
       });
-      if (nameRef.current) nameRef.current.value = "";
-      if (phoneRef.current) phoneRef.current.value = "";
-      if (emailRef.current) emailRef.current.value = "";
-      if (serviceRef.current) serviceRef.current.value = "";
-      if (messageRef.current) messageRef.current.value = "";
     } catch (error) {
       toast.error("Something went wrong!", {
         position: "top-right",
@@ -113,8 +118,8 @@ const ContactUs = () => {
             </h3>
             <p className="text-gray-600">
               We’re here to help you with any questions or inquiries. Whether
-              it&apos;s about our services or just to say hello – we’d love to hear
-              from you!
+              it&apos;s about our services or just to say hello – we’d love to
+              hear from you!
             </p>
             <p className="mt-4 text-gray-600">
               Fill out the form and we’ll get back to you as soon as possible.
@@ -148,7 +153,11 @@ const ContactUs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <Input ref={phoneRef} type="tel" placeholder="Your Phone Number" />
+                <Input
+                  ref={phoneRef}
+                  type="tel"
+                  placeholder="Your Phone Number"
+                />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -177,7 +186,7 @@ const ContactUs = () => {
               >
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white"
+                  className=" w-full bg-primary hover:bg-primary/90 text-white"
                 >
                   Send Message
                 </Button>
