@@ -6,6 +6,7 @@ import WhyChooseUs from "./_components/WhyChooseUs";
 import ContactUs from "./_components/ContactUs";
 import Footer from "./_components/Footer";
 import Services from "./_components/Services";
+import WhatsappChat from "./_components/WhatsappChat";
 
 export default function Home() {
   return (
@@ -16,10 +17,11 @@ export default function Home() {
         <Services />
         <About />
         <WhyChooseUs />
-        <Testimonials/>
+        <Testimonials />
         <ContactUs />
       </main>
       <Footer />
+      <WhatsappChat /> {/* Add the WhatsApp Chat Button */}
     </div>
   );
 }
