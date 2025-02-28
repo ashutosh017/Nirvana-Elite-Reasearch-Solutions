@@ -30,8 +30,13 @@ export async function POST(req: NextRequest) {
   }
 
   const token = jwt.sign({email:adminEmail}, jwtSecret);
-  const response = NextResponse.redirect(new URL("/admin", req.url));
-  response.cookies.set("token", token);
+  const response = NextResponse.redirect(new URL("/admin", req.url), 303);
+  response.cookies.set("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+  });
 
   return response;
 }
