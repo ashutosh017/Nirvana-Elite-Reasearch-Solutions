@@ -34,6 +34,7 @@ export async function DELETE(req:NextRequest){
         })
 
     } catch (error) {
+        console.log(error)
         return new Response("error deleting user/users",{
             status:403
         })
