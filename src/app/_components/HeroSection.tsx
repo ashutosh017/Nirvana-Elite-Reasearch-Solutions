@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
 
 const images = [
   "/images/bg1.png",
@@ -38,7 +37,7 @@ const HeroSection = () => {
             layout="fill"
             objectFit="cover"
             className={`transition-opacity duration-1000 ease-in ${
-              index === currentIndex ? "opacity-20" : "opacity-0"
+              index === currentIndex ? "opacity-40" : "opacity-0"
             }`}
           />
         ))}
