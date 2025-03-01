@@ -1,4 +1,5 @@
 import About from "../_components/About";
+import ContactUs from "../_components/ContactUs";
 import HeroSection from "../_components/HeroSection";
 import Services from "../_components/Services";
 import Testimonials from "../_components/Testimonials";
@@ -13,6 +14,7 @@ export default function Home() {
         <About />
         <WhyChooseUs />
         <Testimonials />
+        <ContactUs/>
       </main>
     </div>
   );

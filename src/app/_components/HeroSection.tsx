@@ -1,9 +1,10 @@
-'use client'
+"use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 const images = [
   "/images/bg1.png",
@@ -54,13 +55,13 @@ const HeroSection = () => {
       </div>
 
       <motion.div
-        className="container mx-auto px-4 text-center relative z-10"
+        className="container mx-auto flex flex-col justify-center items-center px-4 text-center relative z-10"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <motion.h1
-          className="text-3xl md:text-6xl font-bold mb-4"
+          className="text-4xl w-screen md:text-6xl font-bold mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -68,7 +69,7 @@ const HeroSection = () => {
           Expert Assistance for PhD Students
         </motion.h1>
         <motion.p
-          className="text-sm md:text-xl mb-8 px-6"
+          className="text-sm md:text-xl mb-8 px-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -83,10 +84,11 @@ const HeroSection = () => {
         >
           <Button
             asChild
-            className="bg-secondary text-sm md:text-lg px-2 py-1 md:px-4 md:py-5 hover:bg-secondary/90 text-black"
+            className="bg-secondary text-sm md:text-md px-2 py-1 md:px-4 md:py-2 hover:bg-secondary/90 text-black"
           >
-            <Link href="#contact">Get Started</Link>
+            <Link href="/contact">Get Started</Link>
           </Button>
+        
         </motion.div>
       </motion.div>
     </section>
