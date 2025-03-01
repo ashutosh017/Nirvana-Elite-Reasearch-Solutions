@@ -34,10 +34,10 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-4">
-            {["Home","Services", "About", "Why Choose Us", "Contact"].map((item) => (
+            {["Home","Services", "About", "FAQs", "Contact"].map((item) => (
               <li key={item}>
                 <Link
-                  href={`#${item.toLowerCase()}`}
+                  href={`/${item.toLowerCase().split(" ").join("-")}`}
                   className="block px-4 py-2 text-gray-600 hover:text-primary relative group"
                 >
                   {item}
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <ul className="flex flex-col space-y-2 py-4">
-                {["Home","Services", "About", "Why Choose Us", "Contact"].map((item, index) => (
+                {["Home","Services", "About", "FAQs", 'Contact'].map((item, index) => (
                   <motion.li
                     key={item}
                     initial={{ opacity: 0, y: 10 }}
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      href={`#${item.toLowerCase()}`}
+                      href={`/${item.toLowerCase().split(" ").join("-")}`}
                       className="block px-4 py-2 text-gray-600 hover:text-primary relative group"
                       onClick={() => setIsOpen(false)}
                     >

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "../../../components/ui/button";
+import { redirect } from "next/navigation";
 
 const About = () => {
   return (
@@ -18,7 +19,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <Image
-              src="/pexels-nietjuhart-796602.png"
+              src="/images/about.png"
               alt="About Us"
               width={500}
               height={300}
@@ -76,7 +77,9 @@ const About = () => {
                 variant="outline"
                 className="relative overflow-hidden border-primary text-primary transition-all duration-300 hover:text-white group"
               >
-                <span className="relative z-10">Learn More</span>
+                <span onClick={()=>{
+                  redirect("/about")
+                }} className="relative z-10">Learn More</span>
                 <span className="absolute inset-0 bg-primary transition-transform duration-500 transform translate-y-full group-hover:translate-y-0"></span>
               </Button>
             </motion.div>

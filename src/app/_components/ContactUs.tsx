@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
@@ -42,12 +42,11 @@ const ContactUs = () => {
         });
         return;
       }
-      let name, phone, email, service, message;
-      name = nameRef.current.value;
-      phone = phoneRef.current.value;
-      email = emailRef.current?.value;
-      service = serviceRef.current?.value;
-      message = messageRef.current?.value;
+      const name = nameRef.current.value;
+      const phone = phoneRef.current.value;
+      const email = emailRef.current?.value;
+      const service = serviceRef.current?.value;
+      const message = messageRef.current?.value;
       if (nameRef.current) nameRef.current.value = "";
       if (phoneRef.current) phoneRef.current.value = "";
       if (emailRef.current) emailRef.current.value = "";
