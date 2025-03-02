@@ -164,10 +164,9 @@ export default function ReviewPage() {
             type="submit"
             className={`w-full p-3 rounded-lg transition ${
               isDisabled
-                ? "bg-gray-300 cursor-not-allowed"
+                ? "bg-gray-400 text-white cursor-not-allowed"
                 : "bg-black text-white hover:bg-gray-800"
             }`}
-            whileHover={!isDisabled ? { scale: 1.05 } : {}}
             whileTap={!isDisabled ? { scale: 0.95 } : {}}
             transition={{ duration: 0.2 }}
             disabled={isDisabled}
