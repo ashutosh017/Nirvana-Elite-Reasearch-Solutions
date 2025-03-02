@@ -8,10 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Trash2 } from "lucide-react";
+// import { Trash2 } from "lucide-react";
+import * as XLSX from "xlsx"; // Import SheetJS
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../_config";
+import { Button } from "@/components/ui/button";
 
 interface mockUsersType {
   name: string;
@@ -44,18 +46,18 @@ export default function AdminDashboard() {
     })();
   }, []);
 
-  const deleteUser = async (userId: string) => {
-    try {
-      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
-        data: {
-          userId,
-          msg: "",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const deleteUser = async (userId: string) => {
+  //   try {
+  //     await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+  //       data: {
+  //         userId,
+  //         msg: "",
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // const deleteAllUsers = async () => {
   //   try {
   //     await axios.delete(`${BACKEND_URL}/api/v1/users`, {
@@ -68,10 +70,21 @@ export default function AdminDashboard() {
   //     console.log(error);
   //   }
   // };
+   const exportToExcel = () => {
+      const worksheet = XLSX.utils.json_to_sheet(mockUsers);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Reviews");
+      XLSX.writeFile(workbook, "users.xlsx");
+    };
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <Button onClick={exportToExcel} className="bg-blue-500 text-white px-4 py-2 rounded-md">
+          Export to Excel
+        </Button>
+      </div>
       <div className="grid gap-4 mb-8 grid-cols-1 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -102,7 +115,7 @@ export default function AdminDashboard() {
                 <TableHead>Subject</TableHead>
                 <TableHead>message</TableHead>
                 <TableHead>Time</TableHead>
-                <TableHead>Actions</TableHead>
+                {/* <TableHead>Actions</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -123,7 +136,7 @@ export default function AdminDashboard() {
                       second: "2-digit",
                     })}
                   </TableCell>
-                  <TableCell className="">
+                  {/* <TableCell className="">
                     <Trash2
                       onClick={() => {
                         deleteUser(user.id);
@@ -131,7 +144,7 @@ export default function AdminDashboard() {
                       size={16}
                       className=" cursor-pointer hover:text-red-700"
                     />
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

@@ -8,82 +8,65 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../../_config";
+import * as XLSX from "xlsx"; // Import SheetJS
+import { Button } from "@/components/ui/button"; // Import Button component
 
-interface mockUsersType {
+interface mockReviewsType {
   name: string;
   id: string;
   email: string;
   phone: string;
-  service: string;
-  message: string;
+  rating: number;
   date: string;
 }
 
 export default function ReviewsPage() {
-  const [mockUsers, setMockUsers] = useState<Array<mockUsersType>>([]);
+  const [mockReviews, setmockReviews] = useState<Array<mockReviewsType>>([]);
+
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/users`);
-        const users = res.data.users;
-        console.log(users);
-        // Check if the response is an array before setting state
-        if (Array.isArray(users)) {
-          setMockUsers(users);
+        const res = await axios.get(`${BACKEND_URL}/api/v1/review`);
+        const reviews = res.data;
+        console.log(reviews);
+        if (Array.isArray(reviews)) {
+          setmockReviews(reviews);
         } else {
-          console.log("API response is not an array:", users);
-          setMockUsers([]); // Fallback to an empty array
+          console.log("API response is not an array:", reviews);
+          setmockReviews([]);
         }
       } catch (error) {
-        console.log("Error fetching users:", error);
+        console.log("Error fetching reviews:", error);
       }
     })();
   }, []);
 
-  const deleteUser = async (userId: string) => {
-    try {
-      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
-        data: {
-          userId,
-          msg: "",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(mockReviews);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Reviews");
+    XLSX.writeFile(workbook, "reviews.xlsx");
   };
-  // const deleteAllUsers = async () => {
-  //   try {
-  //     await axios.delete(`${BACKEND_URL}/api/v1/users`, {
-  //       data: {
-  //         userId: "",
-  //         msg: "DELETE_ALL",
-  //       },
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <Button onClick={exportToExcel} className="bg-blue-500 text-white px-4 py-2 rounded-md">
+          Export to Excel
+        </Button>
+      </div>
 
       <div className="grid gap-4 mb-8 grid-cols-1 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Total Inquiries
-            </CardTitle>
-            {/* <CustomButton fun={deleteAllUsers} variant="destructive">
-              Delete All Users
-            </CustomButton> */}
+            <CardTitle className="text-sm font-medium">Total Reviews</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{mockUsers.length}</div>
+            <div className="text-2xl font-bold">{mockReviews.length}</div>
           </CardContent>
         </Card>
       </div>
@@ -99,22 +82,19 @@ export default function ReviewsPage() {
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Phone</TableHead>
-                <TableHead>Subject</TableHead>
-                <TableHead>message</TableHead>
+                <TableHead>Rating</TableHead>
                 <TableHead>Time</TableHead>
-                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockUsers.map((user: mockUsersType, index: number) => (
+              {mockReviews.map((review: mockReviewsType, index: number) => (
                 <TableRow key={index}>
-                  <TableCell>{user.name}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.phone}</TableCell>
-                  <TableCell>{user.service}</TableCell>
-                  <TableCell>{user.message}</TableCell>
+                  <TableCell>{review.name}</TableCell>
+                  <TableCell>{review.email}</TableCell>
+                  <TableCell>{review.phone}</TableCell>
+                  <TableCell>{review.rating}/5</TableCell>
                   <TableCell>
-                    {new Date(user.date).toLocaleString("en-US", {
+                    {new Date(review.date).toLocaleString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -122,15 +102,6 @@ export default function ReviewsPage() {
                       minute: "2-digit",
                       second: "2-digit",
                     })}
-                  </TableCell>
-                  <TableCell className="">
-                    <Trash2
-                      onClick={() => {
-                        deleteUser(user.id);
-                      }}
-                      size={16}
-                      className=" cursor-pointer hover:text-red-700"
-                    />
                   </TableCell>
                 </TableRow>
               ))}

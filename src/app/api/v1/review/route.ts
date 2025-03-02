@@ -38,3 +38,20 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+
+export  async function GET(){
+    try {
+        const res = await prisma.review.findMany();
+        return new Response(JSON.stringify(res),{
+            status:200
+        })
+    } catch (error) {
+        console.log(error)
+        return new Response("error fetching reveiws",{
+            status:403
+        })
+    }
+}
+
+
