@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   }, []);
   return (
     <header className={`fixed w-screen top-0 z-50 shadow-sm drop-shadow-lg transition-all duration-300 
-        ${isOpen || isScrolled ? "bg-black bg-opacity-50" : "bg-transparent"}`}>
+        ${isOpen || isScrolled ? "bg-black bg-opacity-50 backdrop-blur-md " : "bg-transparent"}`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-start space-y-0 leading-tight">
           <GraduationCap className="h-12 w-12 text-secondary" />
