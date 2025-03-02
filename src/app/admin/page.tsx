@@ -20,6 +20,7 @@ interface mockUsersType {
   phone: string;
   service: string;
   message: string;
+  date: string;
 }
 
 export default function AdminDashboard() {
@@ -29,7 +30,7 @@ export default function AdminDashboard() {
       try {
         const res = await axios.get(`${BACKEND_URL}/api/v1/users`);
         const users = res.data.users;
-        console.log(users)
+        console.log(users);
         // Check if the response is an array before setting state
         if (Array.isArray(users)) {
           setMockUsers(users);
@@ -100,6 +101,7 @@ export default function AdminDashboard() {
                 <TableHead>Phone</TableHead>
                 <TableHead>Subject</TableHead>
                 <TableHead>message</TableHead>
+                <TableHead>Time</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -111,6 +113,16 @@ export default function AdminDashboard() {
                   <TableCell>{user.phone}</TableCell>
                   <TableCell>{user.service}</TableCell>
                   <TableCell>{user.message}</TableCell>
+                  <TableCell>
+                    {new Date(user.date).toLocaleString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    })}
+                  </TableCell>
                   <TableCell className="">
                     <Trash2
                       onClick={() => {

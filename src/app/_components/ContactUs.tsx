@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
@@ -23,13 +23,15 @@ const ContactUs = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const serviceRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  // const [formData,setFormData] = useState<FormDataSchema>()
+  const [isDisabled,setIsDisabled] = useState<boolean>(true)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     console.log("handleSubmit called");
     e.preventDefault();
     try {
       if (!nameRef.current?.value || !phoneRef.current?.value) {
-        toast.error("Can't Submit Empty Form!", {
+        toast.error("You cannot submit empty form.", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -52,6 +54,7 @@ const ContactUs = () => {
       if (emailRef.current) emailRef.current.value = "";
       if (serviceRef.current) serviceRef.current.value = "";
       if (messageRef.current) messageRef.current.value = "";
+      setIsDisabled(true)
       const res = await axios.post(`${BACKEND_URL}/api/v1/contacts`, {
         name,
         email,
@@ -61,7 +64,7 @@ const ContactUs = () => {
       });
 
       console.log("res data: ", res.data);
-      toast.success("Form Submitted Successfully!", {
+      toast.success("Form submitted successfully!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -137,7 +140,7 @@ const ContactUs = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <Input ref={nameRef} type="text" placeholder="Your Name" />
+                  <Input ref={nameRef} onChange={()=>{setIsDisabled(false)}} type="text" placeholder="Your Name" />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -180,12 +183,12 @@ const ContactUs = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
                   type="submit"
                   className=" w-full bg-primary hover:bg-primary/90 text-white"
+                  disabled={isDisabled}
                 >
                   Send Message
                 </Button>

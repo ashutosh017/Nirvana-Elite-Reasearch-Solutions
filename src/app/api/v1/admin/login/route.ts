@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import z from "zod";
 import jwt from "jsonwebtoken";
 import { adminEmail, adminPassword, jwtSecret } from "@/src/app/_config";
+import { loginSchema } from "@/src/app/_schema/zod";
 
-const loginSchema = z.object({
-  email: z.string().max(100).min(4),
-  password: z.string().min(3).max(100),
-});
+
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const parsedData = loginSchema.safeParse(body);

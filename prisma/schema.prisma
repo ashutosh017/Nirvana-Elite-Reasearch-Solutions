@@ -13,12 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User{
-  id    String      @unique @default(uuid())
+model User {
+  id      String   @unique @default(uuid())
   name    String
   email   String
   phone   String
-  service   String
-  message   String
+  service String
+  message String
+  date    DateTime @default(now())
+}
+
+model review {
+  id         String   @unique @default(uuid())
+  name       String
+  review     String
+  socialLinks String[] @default([])
+  phone      String?
+  email      String?
+  rating      Int     @default(5)
+  profile     String?   
+  date       DateTime @default(now())
 }

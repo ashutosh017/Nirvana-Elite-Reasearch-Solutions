@@ -36,6 +36,15 @@ export default function AdminLayout({
             <span>Users</span>
           </Link>
         </nav>
+        <nav className="mt-8">
+          <Link
+            href="/admin"
+            className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700"
+          >
+            <Users className="h-5 w-5" />
+            <span>Reviews</span>
+          </Link>
+        </nav>
         <form action={signOut} className="absolute bottom-4 left-4">
           <Button
             variant="ghost"

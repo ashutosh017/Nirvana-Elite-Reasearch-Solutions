@@ -11,9 +11,13 @@ const images = [
   "/images/bg3.png",
   "/images/bg4.png",
   "/images/bg5.png",
-  // "/images/bg6.png",
-  // "/images/bg7.png",
-  // "/images/bg8.png",
+];
+const images2 = [
+  "/images/bg6.png",
+  "/images/bg7.png",
+  "/images/bg8.png",
+  "/images/bg9.png",
+  "/images/bg10.png",
 ];
 
 const HeroSection = () => {
@@ -28,12 +32,26 @@ const HeroSection = () => {
 
   return (
     <section className="bg-black text-white py-20 flex items-center justify-center relative overflow-hidden h-screen">
-      <div className="absolute inset-0">
+      <div className="hidden md:inline-block absolute inset-0">
         {images.map((image, index) => (
           <Image
             key={index}
             src={image}
             alt={`Background ${index + 1}`}
+            layout="fill"
+            objectFit="cover"
+            className={`transition-opacity duration-1000 ease-in ${
+              index === currentIndex ? "opacity-40" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="md:hidden absolute inset-0">
+        {images2.map((image, index) => (
+          <Image
+            key={index}
+            src={image}
+            alt={`Background ${index + 5}`}
             layout="fill"
             objectFit="cover"
             className={`transition-opacity duration-1000 ease-in ${
