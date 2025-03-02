@@ -20,6 +20,7 @@ interface mockReviewsType {
   email: string;
   phone: string;
   rating: number;
+  review:string;
   date: string;
 }
 
@@ -83,6 +84,7 @@ export default function ReviewsPage() {
                 <TableHead>Email</TableHead>
                 <TableHead>Phone</TableHead>
                 <TableHead>Rating</TableHead>
+                <TableHead>Review</TableHead>
                 <TableHead>Time</TableHead>
               </TableRow>
             </TableHeader>
@@ -93,6 +95,7 @@ export default function ReviewsPage() {
                   <TableCell>{review.email}</TableCell>
                   <TableCell>{review.phone}</TableCell>
                   <TableCell>{review.rating}/5</TableCell>
+                  <TableCell>{review.review}</TableCell>
                   <TableCell>
                     {new Date(review.date).toLocaleString("en-US", {
                       year: "numeric",
