@@ -1,42 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { GraduationCap, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Header: React.FC = () => {
+const Header2: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
-    <header className={`fixed w-screen top-0 z-50 shadow-sm drop-shadow-lg transition-all duration-300 
-        ${isOpen || isScrolled ? "bg-black bg-opacity-50" : "bg-transparent"}`}>
+    <header className="bg-white shadow-sm sticky top-0 z-50 drop-shadow-lg">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-start space-y-0 leading-tight">
-          <GraduationCap className="h-12 w-12 text-secondary" />
+          <GraduationCap className="h-12 w-12 text-primary" />
           <div className="flex flex-col ml-2">
-            <span className="text-2xl font-bold text-secondary">
+            <span className="text-2xl font-bold text-primary">
               Nirvana Elite
             </span>
-            <span className="text-md text-white">Research Solutions</span>
+            <span className="text-md text-gray-800">Research Solutions</span>
           </div>
         </Link>
 
         <button
-          className="block md:hidden text-white hover:text-gray-200 focus:outline-none"
+          className="block md:hidden text-gray-600 hover:text-primary focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
@@ -50,10 +38,10 @@ const Header: React.FC = () => {
               <li key={item}>
                 <Link
                   href={`/${item.toLowerCase().split(" ").join("-")}`}
-                  className="block px-4 py-2 text-white hover:text-white relative group"
+                  className="block px-4 py-2 text-gray-600 hover:text-primary relative group"
                 >
                   {item}
-                  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             ))}
@@ -64,7 +52,7 @@ const Header: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.nav
-              className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-50 shadow-md z-40"
+              className="md:hidden absolute top-full left-0 w-full bg-white shadow-md z-40"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -80,11 +68,11 @@ const Header: React.FC = () => {
                   >
                     <Link
                       href={`/${item.toLowerCase().split(" ").join("-")}`}
-                      className="block px-4 py-2  text-white hover:text-white relative group"
+                      className="block px-4 py-2 text-gray-600 hover:text-primary relative group"
                       onClick={() => setIsOpen(false)}
                     >
                       {item}
-                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
+                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </motion.li>
                 ))}
@@ -97,4 +85,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default Header2;

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import { BACKEND_URL } from "../_config";
+import { BACKEND_URL } from "../../../_config";
 import axios from "axios";
 import { motion } from "framer-motion";
 

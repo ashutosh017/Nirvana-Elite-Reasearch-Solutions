@@ -31,7 +31,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="bg-black text-white py-20 flex items-center justify-center relative overflow-hidden h-screen">
+    <section className="bg-black  text-white py-20 flex items-center justify-center relative overflow-hidden h-screen">
       <div className="hidden md:inline-block absolute inset-0">
         {images.map((image, index) => (
           <Image

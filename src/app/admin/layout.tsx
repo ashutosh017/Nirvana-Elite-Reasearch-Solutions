@@ -2,7 +2,7 @@ import type React from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { GraduationCap, Users, LogOut } from "lucide-react";
+import { GraduationCap, Users, LogOut, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 async function signOut() {
@@ -35,13 +35,11 @@ export default function AdminLayout({
             <Users className="h-5 w-5" />
             <span>Users</span>
           </Link>
-        </nav>
-        <nav className="mt-8">
           <Link
-            href="/admin"
+            href="/admin/reviews"
             className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-700"
           >
-            <Users className="h-5 w-5" />
+            <Star className="h-5 w-5" />
             <span>Reviews</span>
           </Link>
         </nav>
