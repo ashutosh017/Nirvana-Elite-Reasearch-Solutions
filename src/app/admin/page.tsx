@@ -78,7 +78,6 @@ export default function AdminDashboard() {
     };
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <Button onClick={exportToExcel} className="bg-blue-500 text-white px-4 py-2 rounded-md">
@@ -133,7 +132,6 @@ export default function AdminDashboard() {
                       day: "numeric",
                       hour: "2-digit",
                       minute: "2-digit",
-                      second: "2-digit",
                     })}
                   </TableCell>
                   {/* <TableCell className="">

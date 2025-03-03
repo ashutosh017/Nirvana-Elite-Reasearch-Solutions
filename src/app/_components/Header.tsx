@@ -9,16 +9,20 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const handleScroll=()=>{
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+   }
+   useEffect(()=>{
+      handleScroll();
+   },[])
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    console.log(window.scrollY)
+   
+     window.addEventListener("scroll",handleScroll)
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
@@ -44,8 +48,8 @@ const Header: React.FC = () => {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-4">
+        <nav className="hidden md:block  ">
+          <ul className="flex space-x-4 ">
             {["Home","Services", "About", "FAQs", "Contact"].map((item) => (
               <li key={item}>
                 <Link
@@ -62,36 +66,37 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         <AnimatePresence>
-          {isOpen && (
-            <motion.nav
-              className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-50 shadow-md z-40"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+  {isOpen && (
+    <motion.nav
+      className="md:hidden absolute top-full left-0 w-full bg-black bg-opacity-50 shadow-md z-40 "
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      <ul className="flex flex-col space-y-2 py-4">
+        {["Home", "Services", "About", "FAQs", "Contact"].map((item, index) => (
+          <motion.li
+            key={item}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <Link
+              href={`/${item.toLowerCase().split(" ").join("-")}`}
+              className="block px-4 py-2 text-white hover:text-white relative group"
+              onClick={() => setIsOpen(false)}
             >
-              <ul className="flex flex-col space-y-2 py-4">
-                {["Home","Services", "About", "FAQs", 'Contact'].map((item, index) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      href={`/${item.toLowerCase().split(" ").join("-")}`}
-                      className="block px-4 py-2  text-white hover:text-white relative group"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item}
-                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+              {item}
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          </motion.li>
+        ))}
+      </ul>
+    </motion.nav>
+  )}
+</AnimatePresence>
+
       </div>
     </header>
   );

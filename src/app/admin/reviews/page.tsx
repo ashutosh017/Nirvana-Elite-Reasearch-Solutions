@@ -20,7 +20,7 @@ interface mockReviewsType {
   email: string;
   phone: string;
   rating: number;
-  review:string;
+  review: string;
   date: string;
 }
 
@@ -56,7 +56,10 @@ export default function ReviewsPage() {
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Dashboard</h1>
-        <Button onClick={exportToExcel} className="bg-blue-500 text-white px-4 py-2 rounded-md">
+        <Button
+          onClick={exportToExcel}
+          className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        >
           Export to Excel
         </Button>
       </div>
@@ -103,7 +106,6 @@ export default function ReviewsPage() {
                       day: "numeric",
                       hour: "2-digit",
                       minute: "2-digit",
-                      second: "2-digit",
                     })}
                   </TableCell>
                 </TableRow>
