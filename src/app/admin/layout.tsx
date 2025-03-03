@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 async function signOut() {
   "use server";
   //   cookies().delete("admin-token")
-  (await cookies()).delete("admin-token");
+  (await cookies()).delete("token");
   redirect("/admin/login");
 }
 
