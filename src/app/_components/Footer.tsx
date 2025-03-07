@@ -31,7 +31,7 @@ export default function Footer() {
           <h3 className="text-xl font-bold mb-4">Contact Us</h3>
           <ul className="space-y-2 text-gray-400">
             <li>Email: info@Nirvanaaelite.com</li>
-            <li>Phone: +1 (123) 456-7890</li>
+            <li>Phone: +91 70178 29281</li>
             <li>Address: 123 Academic Avenue, Research City</li>
           </ul>
         </div>
