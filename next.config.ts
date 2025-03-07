@@ -12,7 +12,7 @@ const nextConfig = {
             value:
               process.env.NODE_ENV === "development"
                 ? "http://localhost:3000" // Allow localhost during development
-                : "https://phd-assist-v0-dev.vercel.app/", // Allow production domain when deployed
+                : "https://nirvanaeliteresearchsolutions.vercel.app/", // Allow production domain when deployed
           },
           {
             key: "Access-Control-Allow-Methods",

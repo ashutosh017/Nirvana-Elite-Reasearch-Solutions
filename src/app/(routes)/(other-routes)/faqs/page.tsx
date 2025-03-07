@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const faqs = [
   { question: "What services do you offer?", answer: "We provide assistance for PG students with their theses, viva, projects, and more." },
-  { question: "How can I contact you?", answer: "You can reach us through our contact form or email us at support@nirvaanelite.com." },
+  { question: "How can I contact you?", answer: "You can reach us through our contact form or email us at support@Nirvanaelite.com." },
   { question: "Do you offer one-on-one support?", answer: "Yes, we provide personalized support based on your requirements." },
   { question: "What subjects do you cover?", answer: "We cover a wide range of subjects including engineering, management, sciences, and humanities." },
   { question: "Can you help with research paper publishing?", answer: "Yes, we assist in research paper writing, formatting, and submission to reputed journals." },

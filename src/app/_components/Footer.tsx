@@ -30,7 +30,7 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-bold mb-4">Contact Us</h3>
           <ul className="space-y-2 text-gray-400">
-            <li>Email: info@nirvaanaelite.com</li>
+            <li>Email: info@Nirvanaaelite.com</li>
             <li>Phone: +1 (123) 456-7890</li>
             <li>Address: 123 Academic Avenue, Research City</li>
           </ul>
@@ -47,7 +47,7 @@ export default function Footer() {
            className="text-gray-400 hover:text-white transition-transform transform hover:scale-110">
           <Linkedin size={24} />
         </a>
-        <a href="https://github.com/ashutosh017/Nirvaan-Elite-Reasearch-Solutions" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+        <a href="https://github.com/ashutosh017/Nirvana-Elite-Reasearch-Solutions" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
            className="text-gray-400 hover:text-white transition-transform transform hover:scale-110">
           <Github size={24} />
         </a>
@@ -55,7 +55,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
-        <p>© {new Date().getFullYear()} Nirvaana Elite Research Solutions. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Nirvana Elite Research Solutions. All rights reserved.</p>
       </div>
     </footer>
   );
