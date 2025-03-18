@@ -6,7 +6,6 @@ import Services from "../../_components/Services";
 import Testimonials from "../../_components/Testimonials";
 import WhyChooseUs from "../../_components/WhyChooseUs";
 
-
 export default function Home() {
   return (
     <div className="flex flex-col scroll-smooth min-h-screen">
@@ -16,7 +15,7 @@ export default function Home() {
         <About />
         <WhyChooseUs />
         <Testimonials />
-        <ContactUs/>
+        <ContactUs />
       </main>
     </div>
   );
