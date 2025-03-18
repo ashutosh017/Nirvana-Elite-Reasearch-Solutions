@@ -16,7 +16,7 @@ const WhatsappChat = () => {
       onClick={openWhatsApp}
       className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 cursor-pointer transition-colors"
     >
-      <MessageCircle size={24} />
+      <MessageCircle size={20} />
     </div>
   );
 };

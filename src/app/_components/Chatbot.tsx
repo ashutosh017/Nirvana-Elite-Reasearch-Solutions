@@ -289,7 +289,7 @@ Is this information correct?`,
   };
 
   return (
-    <div className="fixed bottom-8 left-6 z-50">
+    <div className="fixed bottom-4 left-6 z-50">
       {isOpen ? (
         <Card className="w-80 sm:w-96 h-[500px] flex flex-col shadow-lg border-primary/10 animate-in slide-in-from-bottom-10 duration-300">
           <CardHeader className="p-4 border-b flex flex-row items-center justify-between space-y-0">
