@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { STEPS } from "../_config";
 
 type Message = {
   id: string;
@@ -27,14 +28,7 @@ type UserInfo = {
   work: string;
 };
 
-const STEPS = [
-  "intro",
-  "name",
-  "email",
-  "work",
-  "confirmation",
-  "success",
-] as const;
+
 type Step = (typeof STEPS)[number];
 
 const Chatbot = () => {
@@ -211,6 +205,7 @@ Is this information correct?`,
               setIsSubmitting(false);
             }, 1000);
           } catch (err) {
+            console.log(err)
             setError(
               "There was an error submitting your information. Please try again."
             );
