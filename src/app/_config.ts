@@ -7,7 +7,8 @@ export const STEPS = [
     "intro",
     "name",
     "email",
-    "work",
+    "phone",
+    "requirements",
     "confirmation",
     "success",
   ] as const;
