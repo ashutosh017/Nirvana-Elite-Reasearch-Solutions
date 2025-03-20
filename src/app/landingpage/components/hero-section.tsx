@@ -1,12 +1,19 @@
 "use client"
 
 import type React from "react"
-// import Image from "next/image"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { MessageSquare } from "lucide-react"
+// import { useState, useEffect } from "react"
 import { ContactForm } from "./contact-form"
 
 export function HeroSection() {
+  // const [isMounted, setIsMounted] = useState(false)
+
+  // useEffect(() => {
+  //   setIsMounted(true)
+  // }, [])
+
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
     const phoneNumber = "1234567890"
@@ -43,7 +50,7 @@ export function HeroSection() {
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
           <motion.div
             className="flex flex-col justify-center space-y-4"
             initial={{ opacity: 0, x: -50 }}
@@ -70,7 +77,7 @@ export function HeroSection() {
               </motion.p>
             </div>
             <motion.div
-              className="flex flex-col gap-2 min-[400px]:flex-row"
+              className="flex flex-col gap-2 sm:flex-row"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -104,27 +111,27 @@ export function HeroSection() {
               stiffness: 100,
             }}
           >
-            <div className="relative w-[400px] h-[400px] perspective-[1000px]">
-              {/* <motion.div
+            <div className="relative w-full max-w-[400px] h-[300px] md:h-[400px] perspective-[1000px]">
+              <motion.div
                 className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
                 initial={{ rotateY: 0 }}
                 animate={{ rotateY: 360 }}
                 transition={{
-                  duration: 50,
+                  duration: 20,
                   repeat: Number.POSITIVE_INFINITY,
                   repeatType: "loop",
                   ease: "linear",
                 }}
               >
                 <Image
-                  src="/images/bg4.png"
+                  src="/images/hero.png"
                   width={400}
                   height={400}
                   alt="PhD Research"
-                  className="rounded-2xl object-center"
+                  className="rounded-2xl object-cover grayscale"
                   priority
                 />
-              </motion.div> */}
+              </motion.div>
             </div>
           </motion.div>
         </div>

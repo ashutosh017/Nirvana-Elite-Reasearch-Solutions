@@ -108,7 +108,7 @@ export function TestimonialsSection() {
         </motion.div>
 
         <motion.div
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-3"
+          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 sm:py-12 sm:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
@@ -145,7 +145,7 @@ export function TestimonialsSection() {
                       </motion.div>
                     ))}
                 </motion.div>
-                <p className="mb-4 text-muted-foreground">&quot;{testimonial.content}&quote;</p>
+                <p className="mb-4 text-muted-foreground">&quot;{testimonial.content}&quot;</p>
               </div>
               <div>
                 <p className="font-semibold">{testimonial.name}</p>
@@ -156,7 +156,7 @@ export function TestimonialsSection() {
         </motion.div>
 
         <motion.div
-          className="flex justify-center mt-8 gap-4"
+          className="flex flex-col sm:flex-row justify-center mt-8 gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}

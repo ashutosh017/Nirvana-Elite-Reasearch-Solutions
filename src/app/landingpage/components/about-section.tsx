@@ -78,33 +78,33 @@ export function AboutSection() {
 
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, scale: 0.8, rotateY: 30 }}
-            animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8, rotateY: 30 }}
-            transition={{
-              duration: 1,
-              type: "spring",
-              stiffness: 100,
-            }}
-            style={{ perspective: "1000px" }}
-          >
-            <div className="relative w-[500px] h-[350px]  transform-gpu">
-              <motion.div
-                className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Image
-                  src="/images/about.png"
-                  width={500}
-                  height={500}
-                  alt="About Nirvana Elite Research"
-                  className="rounded-2xl object-cover"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+        <motion.div
+  className="flex justify-center"
+  initial={{ opacity: 0, scale: 0.8, rotateY: 30 }}
+  animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8, rotateY: 30 }}
+  transition={{
+    duration: 1,
+    type: "spring",
+    stiffness: 100,
+  }}
+  style={{ perspective: "1000px" }}
+>
+  <div className="relative w-full max-w-[500px] h-[300px] md:h-[400px] lg:h-[500px] mx-auto transform-gpu">
+    <motion.div
+      className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
+      whileHover={{ scale: 1.05, rotateY: 5 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Image
+        src="/images/whychooseus.png"
+        width={500}
+        height={500}
+        alt="About Nirvana Elite Research"
+        className="rounded-2xl object-cover"
+      />
+    </motion.div>
+  </div>
+</motion.div>
 
           <motion.div
             className="space-y-4"
@@ -121,7 +121,7 @@ export function AboutSection() {
               excel in your academic journey.
             </p>
             <motion.ul
-              className="grid gap-3 md:grid-cols-2"
+              className="grid gap-3 grid-cols-1 sm:grid-cols-2"
               variants={container}
               initial="hidden"
               animate={isInView ? "show" : "hidden"}
@@ -134,7 +134,7 @@ export function AboutSection() {
               ))}
             </motion.ul>
             <motion.div
-              className="pt-4 flex gap-2"
+              className="pt-4 flex flex-col sm:flex-row gap-2"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.6 }}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { MessageSquare, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import { phoneNumber } from "../../_config"
 
 export function WhatsAppChat() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +21,6 @@ export function WhatsAppChat() {
 
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "1234567890"
     const message = "Hello! I'm interested in PhD assistance services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }

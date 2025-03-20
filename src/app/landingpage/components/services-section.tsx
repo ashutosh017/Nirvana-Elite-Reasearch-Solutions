@@ -110,7 +110,7 @@ export function ServicesSection() {
         </motion.div>
 
         <motion.div
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:gap-12"
+          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 sm:py-12 md:grid-cols-2 lg:gap-12"
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
@@ -118,7 +118,7 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="relative flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm hover:scale-105 transform-gpu"
+              className="relative flex flex-col items-center space-y-4 rounded-lg border p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm hover:scale-105 transform-gpu"
               onClick={() => document.getElementById("contact-form")?.click()}
               variants={item}
               whileHover={{
@@ -135,7 +135,7 @@ export function ServicesSection() {
               </motion.div>
               <h3 className="text-xl font-bold">{service.title}</h3>
               <p className="text-muted-foreground text-center">{service.description}</p>
-              <div className="mt-auto pt-4 flex gap-2">
+              <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-2">
                 <ContactForm buttonText={index % 2 === 0 ? "Request Consultation" : "Get Started"} />
                 {index === 1 && (
                   <Button

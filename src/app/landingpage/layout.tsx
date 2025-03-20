@@ -21,6 +21,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
           <WhatsAppChat />
+          <EnhancedChatbot/>
         </ThemeProvider>
       </div>
     </div>
@@ -31,4 +32,5 @@ export default function RootLayout({
 
 import { ThemeProvider } from "./components/theme-provider"
 import { WhatsAppChat } from "./components/whatsapp-chat"
+import EnhancedChatbot from "../_components/Chatbot"
 

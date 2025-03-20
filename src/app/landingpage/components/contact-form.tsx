@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 
 export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string }) {
   const [isOpen, setIsOpen] = useState(false)
+  // const [isMounted, setIsMounted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,6 +22,10 @@ export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
+
+  // useEffect(() => {
+  //   setIsMounted(true)
+  // }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -139,7 +144,7 @@ export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="service">service</Label>
+                <Label htmlFor="service">Subject</Label>
                 <Input
                   id="service"
                   name="service"

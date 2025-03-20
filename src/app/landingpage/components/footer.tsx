@@ -53,7 +53,7 @@ export function Footer() {
 
       <div className="container px-4 py-12 md:px-6 md:py-16 relative z-10">
         <motion.div
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
           variants={container}
           initial="hidden"
           animate="show"
@@ -65,7 +65,7 @@ export function Footer() {
             <p className="text-muted-foreground">
               Expert assistance for PhD students with synopsis writing, research methodology, and academic assignments.
             </p>
-            <div className="pt-2 flex gap-2">
+            <div className="pt-2 flex flex-col sm:flex-row gap-2">
               <ContactForm buttonText="Reach Out" />
               <Button
                 onClick={handleWhatsAppClick}
@@ -184,7 +184,10 @@ export function Footer() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <p>© 2025 Nirvana Elite Research Solutions. All rights reserved.</p>
+          <p>
+            © <span suppressHydrationWarning>{new Date().getFullYear()}</span> Nirvana Elite Research Solutions. All
+            rights reserved.
+          </p>
         </motion.div>
       </div>
     </footer>
