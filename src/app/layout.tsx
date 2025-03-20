@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Nirvana Elite Research Solution",
     images: [
       {
-        url: "/images/og.png", // Replace with your actual Open Graph image URL
+        url: "https://nirvanaeliteresearchsolutions.vercel.app/images/og.png", // Replace with your actual Open Graph image URL
         width: 1200,
         height: 630,
         alt: "Nirvana Elite Research Solution",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Nirvana Elite Research Solution",
     description:
       "Expert guidance for PG students in thesis, viva, and academic projects.",
-    images: ["/images/og.png"], // Replace with your actual Twitter card image URL
+    images: ["https://nirvanaeliteresearchsolutions.vercel.app/images/og.png"], // Replace with your actual Twitter card image URL
   },
 };
 
