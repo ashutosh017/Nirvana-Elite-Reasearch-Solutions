@@ -19,7 +19,7 @@ export function BookAppointmentSection() {
 
   const handleCallClick = () => {
     // Replace with your actual phone number
-    window.location.href =`tel: ${phoneNumber!}`
+    window.location.href =`tel:+${phoneNumber!}`
   }
 
   return (
