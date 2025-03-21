@@ -53,5 +53,29 @@ export  async function GET(){
         })
     }
 }
+export async function DELETE(req:NextRequest){
+  try {
+      const body = await req.json();
+      const {userId, msg}=body;
+      if(msg==='DELETE_ALL'){
+          await prisma.review.deleteMany();
+      }
+      else{
+          await prisma.review.delete({
+              where:{
+                  id:userId
+              }
+          })
+      }
+      return new Response("delete succesful",{
+          status:200
+      })
 
+  } catch (error) {
+      console.log(error)
+      return new Response("error deleting user/users",{
+          status:403
+      })
+  }
+}
 

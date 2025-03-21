@@ -1,7 +1,16 @@
 "use client"
 
 import { useRef } from "react"
-import { BookOpen, FileText, GraduationCap, PenTool, MessageSquare } from "lucide-react"
+import {
+  BookOpen,
+  FileText,
+  GraduationCap,
+  PenTool,
+  MessageSquare,
+  FileEdit,
+  BookText,
+  FileSpreadsheet,
+} from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
@@ -12,10 +21,10 @@ export function ServicesSection() {
 
   const services = [
     {
-      icon: <FileText className="h-10 w-10 text-primary" />,
-      title: "PhD Synopsis Writing",
+      icon: <FileEdit className="h-10 w-10 text-primary" />,
+      title: "Research Proposal/Synopsis",
       description:
-        "Expert assistance in crafting comprehensive and well-structured PhD synopses that meet academic standards.",
+        "Expert assistance in crafting comprehensive and well-structured research proposals and PhD synopses that meet academic standards.",
     },
     {
       icon: <BookOpen className="h-10 w-10 text-primary" />,
@@ -33,6 +42,29 @@ export function ServicesSection() {
       title: "Academic Assignments",
       description:
         "Professional assistance with complex academic assignments, ensuring high-quality and original content.",
+    },
+    {
+      icon: <BookText className="h-10 w-10 text-primary" />,
+      title: "Thesis Writing",
+      description:
+        "Comprehensive support for structuring, writing, and refining your thesis to meet the highest academic standards.",
+    },
+    {
+      icon: <FileSpreadsheet className="h-10 w-10 text-primary" />,
+      title: "Dissertation Writing",
+      description: "Expert guidance throughout the dissertation process, from conceptualization to final submission.",
+    },
+    {
+      icon: <FileText className="h-10 w-10 text-primary" />,
+      title: "Research Paper Writing",
+      description:
+        "Professional assistance with crafting research papers for journals, conferences, and academic publications.",
+    },
+    {
+      icon: <PenTool className="h-10 w-10 text-primary" />,
+      title: "Editing & Proofreading",
+      description:
+        "Meticulous editing and proofreading services to ensure your academic work is polished and error-free.",
     },
   ]
 
@@ -110,7 +142,7 @@ export function ServicesSection() {
         </motion.div>
 
         <motion.div
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 sm:py-12 md:grid-cols-2 lg:gap-12"
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-6 py-8 sm:py-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
@@ -133,25 +165,28 @@ export function ServicesSection() {
               >
                 {service.icon}
               </motion.div>
-              <h3 className="text-xl font-bold">{service.title}</h3>
+              <h3 className="text-xl font-bold text-center">{service.title}</h3>
               <p className="text-muted-foreground text-center">{service.description}</p>
-              <div className="mt-auto pt-4 flex flex-col sm:flex-row gap-2">
-                <ContactForm buttonText={index % 2 === 0 ? "Request Consultation" : "Get Started"} />
-                {index === 1 && (
-                  <Button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleWhatsAppClick()
-                    }}
-                    className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2"
-                  >
-                    <MessageSquare className="h-4 w-4" />
-                    WhatsApp
-                  </Button>
-                )}
+              <div className="mt-auto pt-4">
+                <ContactForm buttonText="Get Started" />
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Button
+            onClick={handleWhatsAppClick}
+            className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2"
+          >
+            <MessageSquare className="h-4 w-4" />
+            Discuss Your Requirements on WhatsApp
+          </Button>
         </motion.div>
       </div>
     </section>

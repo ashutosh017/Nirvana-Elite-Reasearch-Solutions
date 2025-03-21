@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { MessageSquare, X } from "lucide-react"
+import { MessageSquare, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { phoneNumber } from "../../_config"
@@ -9,9 +9,13 @@ import { phoneNumber } from "../../_config"
 export function WhatsAppChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
-  // Show the WhatsApp button after a delay
+  // Handle client-side rendering
   useEffect(() => {
+    setIsMounted(true)
+
+    // Show the WhatsApp button after a delay
     const timer = setTimeout(() => {
       setIsVisible(true)
     }, 1500)
@@ -19,30 +23,55 @@ export function WhatsAppChat() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Don't render anything during SSR to prevent hydration errors
+  if (!isMounted) return null
+
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
     const message = "Hello! I'm interested in PhD assistance services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
 
+  const handleCallClick = () => {
+    // Replace with your actual phone number
+    window.location.href = phoneNumber!
+  }
+
   return (
     <>
       <AnimatePresence>
         {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: 20 }}
-            className="fixed bottom-6 right-6 z-50"
-          >
-            <Button
-              onClick={() => setIsOpen(true)}
-              className="h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg"
-              aria-label="Chat on WhatsApp"
+          <>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.5, y: 20 }}
+              className="fixed bottom-4 right-6 z-50"
             >
-              <MessageSquare className="h-6 w-6" />
-            </Button>
-          </motion.div>
+              <Button
+                onClick={() => setIsOpen(true)}
+                className="h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg"
+                aria-label="Chat on WhatsApp"
+              >
+                <MessageSquare className="h-6 w-6" />
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.5, y: 20 }}
+              className="fixed bottom-24 right-6 z-50"
+            >
+              <Button
+                onClick={handleCallClick}
+                className="h-14 w-14 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg"
+                aria-label="Call us"
+              >
+                <Phone className="h-6 w-6" />
+              </Button>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 

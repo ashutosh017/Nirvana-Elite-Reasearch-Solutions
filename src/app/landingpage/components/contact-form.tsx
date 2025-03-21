@@ -8,10 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string }) {
   const [isOpen, setIsOpen] = useState(false)
-  // const [isMounted, setIsMounted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,13 +23,14 @@ export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
 
-  // useEffect(() => {
-  //   setIsMounted(true)
-  // }, [])
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleServiceChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, service: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -144,15 +145,22 @@ export function ContactForm({ buttonText = "Contact Us" }: { buttonText?: string
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="service">Subject</Label>
-                <Input
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  placeholder="PhD Synopsis Help"
-                  required
-                />
+                <Label htmlFor="service">Service Required</Label>
+                <Select value={formData.service} onValueChange={handleServiceChange} required>
+                  <SelectTrigger id="service">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Research Proposal/Synopsis">Research Proposal/Synopsis</SelectItem>
+                    <SelectItem value="Thesis Writing">Thesis Writing</SelectItem>
+                    <SelectItem value="Dissertation Writing">Dissertation Writing</SelectItem>
+                    <SelectItem value="Research Paper Writing">Research Paper Writing</SelectItem>
+                    <SelectItem value="Literature Review">Literature Review</SelectItem>
+                    <SelectItem value="Research Methodology">Research Methodology</SelectItem>
+                    <SelectItem value="Academic Assignments">Academic Assignments</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">

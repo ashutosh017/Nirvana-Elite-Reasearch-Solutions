@@ -5,11 +5,11 @@ import { Mail, MapPin, Phone, MessageSquare } from "lucide-react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
+import { phoneNumber } from "../../_config"
 
 export function Footer() {
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "1234567890"
     const message = "Hello! I'd like to know more about your PhD services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
@@ -147,7 +147,7 @@ export function Footer() {
                 transition={{ duration: 0.2 }}
               >
                 <Phone className="h-5 w-5 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <span>+{phoneNumber?.slice(0,2)} {phoneNumber?.slice(2)}</span>
               </motion.li>
               <motion.li
                 className="flex items-center gap-2"

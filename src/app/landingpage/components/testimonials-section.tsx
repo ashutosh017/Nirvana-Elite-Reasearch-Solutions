@@ -1,14 +1,21 @@
 "use client"
 
-import { useRef } from "react"
-import { Star, MessageSquare } from "lucide-react"
-import { motion, useInView } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { Star, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
 
 export function TestimonialsSection() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const testimonials = [
     {
@@ -32,6 +39,20 @@ export function TestimonialsSection() {
         "The assistance I received with my research methodology was outstanding. The team at Nirvana Elite understood my research objectives perfectly and provided tailored guidance that significantly improved my work.",
       rating: 4,
     },
+    {
+      name: "Dr. James Wilson",
+      role: "PhD in Business Management",
+      content:
+        "Working with Nirvana Elite was a game-changer for my dissertation. Their attention to detail and deep understanding of research methodologies helped me complete my work ahead of schedule.",
+      rating: 5,
+    },
+    {
+      name: "Sophia Rodriguez",
+      role: "PhD Student, Sociology",
+      content:
+        "I highly recommend Nirvana Elite to any PhD student feeling overwhelmed. Their structured approach and expert guidance made the complex process of research design much more manageable.",
+      rating: 5,
+    },
   ]
 
   const handleWhatsAppClick = () => {
@@ -41,20 +62,40 @@ export function TestimonialsSection() {
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
+  const nextTestimonial = () => {
+    setDirection(1)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
   }
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  const prevTestimonial = () => {
+    setDirection(-1)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
+  }
+
+  // Auto-advance testimonials
+  useEffect(() => {
+    if (!isMounted) return
+
+    const interval = setInterval(() => {
+      nextTestimonial()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isMounted, testimonials.length])
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+    }),
   }
 
   return (
@@ -107,53 +148,74 @@ export function TestimonialsSection() {
           </div>
         </motion.div>
 
-        <motion.div
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 sm:py-12 sm:grid-cols-2 lg:grid-cols-3"
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              className="relative flex flex-col justify-between rounded-lg border p-6 shadow-lg hover:shadow-xl transition-all duration-300 bg-card/50 backdrop-blur-sm transform-gpu"
-              onClick={() => document.getElementById("contact-form")?.click()}
-              variants={item}
-              whileHover={{
-                y: -5,
-                scale: 1.02,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-              }}
+        {/* Testimonial Slider */}
+        <div className="mx-auto max-w-4xl py-12 relative">
+          <div className="relative overflow-hidden h-[300px] sm:h-[250px] md:h-[220px]">
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+                className="absolute w-full"
+              >
+                <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-primary/10 shadow-lg">
+                  <div className="flex mb-4">
+                    {Array(testimonials[currentIndex].rating)
+                      .fill(0)
+                      .map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                      ))}
+                  </div>
+                  <p className="mb-4 text-muted-foreground italic">&quot;{testimonials[currentIndex].content}&quot;</p>
+                  <div>
+                    <p className="font-semibold">{testimonials[currentIndex].name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonials[currentIndex].role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-center mt-6 gap-4">
+            <button
+              onClick={prevTestimonial}
+              className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+              aria-label="Previous testimonial"
             >
-              <div>
-                <motion.div
-                  className="flex mb-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 + index * 0.2, duration: 0.8 }}
-                >
-                  {Array(testimonial.rating)
-                    .fill(0)
-                    .map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ rotate: -30, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        transition={{ delay: 0.8 + i * 0.1, duration: 0.3 }}
-                      >
-                        <Star className="h-5 w-5 fill-primary text-primary" />
-                      </motion.div>
-                    ))}
-                </motion.div>
-                <p className="mb-4 text-muted-foreground">&quot;{testimonial.content}&quot;</p>
-              </div>
-              <div>
-                <p className="font-semibold">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <div className="flex gap-2 items-center">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1)
+                    setCurrentIndex(index)
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentIndex ? "bg-primary w-4" : "bg-primary/30"
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={nextTestimonial}
+              className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
+        </div>
 
         <motion.div
           className="flex flex-col sm:flex-row justify-center mt-8 gap-4"
