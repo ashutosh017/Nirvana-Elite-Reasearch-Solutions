@@ -28,7 +28,7 @@ export function HeroSection() {
 
   const handleCallClick = () => {
     // Replace with your actual phone number
-    window.location.href = phoneNumber!
+    window.location.href =`tel: ${phoneNumber!}`
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

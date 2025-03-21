@@ -34,7 +34,7 @@ export function WhatsAppChat() {
 
   const handleCallClick = () => {
     // Replace with your actual phone number
-    window.location.href = phoneNumber!
+    window.location.href =`tel: ${phoneNumber!}`
   }
 
   return (
