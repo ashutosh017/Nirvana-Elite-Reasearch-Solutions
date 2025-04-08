@@ -5,6 +5,7 @@ import { Star, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
+import { phoneNumber } from "../../_config"
 
 export function TestimonialsSection() {
   const sectionRef = useRef(null)
@@ -57,7 +58,6 @@ export function TestimonialsSection() {
 
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "1234567890"
     const message = "Hello! I'd like to hear more about your PhD services success stories."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }

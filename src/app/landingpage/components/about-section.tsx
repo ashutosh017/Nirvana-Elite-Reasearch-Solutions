@@ -6,6 +6,7 @@ import { CheckCircle, MessageSquare } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
+import { phoneNumber } from "../../_config"
 
 export function AboutSection() {
   const sectionRef = useRef(null)
@@ -22,7 +23,6 @@ export function AboutSection() {
 
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "1234567890"
     const message = "Hello! I'd like to know more about your PhD services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }

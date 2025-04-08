@@ -14,6 +14,7 @@ import {
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ContactForm } from "./contact-form"
+import { phoneNumber } from "../../_config"
 
 export function ServicesSection() {
   const sectionRef = useRef(null)
@@ -70,7 +71,6 @@ export function ServicesSection() {
 
   const handleWhatsAppClick = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = "1234567890"
     const message = "Hello! I'm interested in your PhD services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
