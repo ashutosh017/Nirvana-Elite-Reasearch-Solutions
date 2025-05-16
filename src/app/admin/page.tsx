@@ -12,7 +12,7 @@ import {
 import { Trash2 } from "lucide-react";
 import * as XLSX from "xlsx"; // Import SheetJS
 import axios from "axios";
-import { BACKEND_URL } from "../_config";
+
 import { Button } from "@/components/ui/button";
 import CustomButton from "../_components/Button";
 
@@ -35,7 +35,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/users`);
+        const res = await axios.get(`/api/v1/users`);
         const users = res.data.users;
         if (Array.isArray(users)) {
           setMockUsers(users);
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
 
   const deleteUser = async (userId: string) => {
     try {
-      await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+      await axios.delete(`/api/v1/users`, {
         data: { userId, msg: "" },
       });
       setMockUsers((prev) => prev.filter((user) => user.id !== userId));
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
   const deleteAllUsers = async () => {
     if (deleteAllConfirmText === "DELETE") {
       try {
-        await axios.delete(`${BACKEND_URL}/api/v1/users`, {
+        await axios.delete(`/api/v1/users`, {
           data: { userId: "", msg: "DELETE_ALL" },
         });
         setMockUsers([]);

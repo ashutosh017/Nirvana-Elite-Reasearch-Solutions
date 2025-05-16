@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import { BACKEND_URL } from "../../../_config";
 import axios from "axios";
 import { motion } from "framer-motion";
 
@@ -40,7 +39,7 @@ export default function ReviewPage() {
         requestData.email = email
       }
       console.log(name, email, phone, [socialLink], rating, review);
-      await axios.post(`${BACKEND_URL}/api/v1/review`, requestData);
+      await axios.post(`/api/v1/review`, requestData);
       toast.success("Review submitted!");
       // Clear form after submission
       setName("");

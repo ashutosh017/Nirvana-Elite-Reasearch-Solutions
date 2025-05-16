@@ -7,8 +7,6 @@ import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
-import { BACKEND_URL } from "../_config";
-
 // interface FormDataSchema {
 //   name: string;
 //   email: string;
@@ -55,7 +53,7 @@ const ContactUs = () => {
       if (serviceRef.current) serviceRef.current.value = "";
       if (messageRef.current) messageRef.current.value = "";
       setIsDisabled(true)
-      const res = await axios.post(`${BACKEND_URL}/api/v1/contacts`, {
+      const res = await axios.post(`/api/v1/contacts`, {
         name,
         email,
         phone,
